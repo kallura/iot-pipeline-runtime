@@ -2,7 +2,7 @@
 
 Loads the statistic data from HBase and aggregate average/median/max/min values for sensor array
 
-#####Rest endpoint specification
+#### Rest endpoint specification
 Average:
 
 ````
@@ -46,7 +46,7 @@ Query params:
     time_end - the filter end date time (example "2018-05-21T13:13:42.000")
 ````
 
-#####Prerequisites
+#### Prerequisites
 You will need to install next software, before you'll run app: 
 
 1. java v1.8
@@ -67,7 +67,7 @@ sudo apt-get install maven
 apt-get install git
 
 ```
-#####Installing
+#### Installing
 Before you will use the app you will need to execute next commands:
 
 ```
