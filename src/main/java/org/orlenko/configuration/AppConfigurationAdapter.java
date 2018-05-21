@@ -1,0 +1,43 @@
+package org.orlenko.configuration;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
+
+/**
+ * Security adapter configuration
+ *
+ * @author Kseniia Orlenko
+ * @version 5/21/18
+ */
+@Configuration
+public class AppConfigurationAdapter extends WebSecurityConfigurerAdapter {
+
+    private static final PasswordEncoder encoder =
+            PasswordEncoderFactories.createDelegatingPasswordEncoder();
+
+    @Autowired
+    private AuthenticationEntryPoint authEntryPoint;
+
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable().authorizeRequests()
+                .anyRequest().authenticated()
+                .and().httpBasic()
+                .authenticationEntryPoint(authEntryPoint);
+    }
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+                .withUser("user1")
+                .password(encoder.encode("password1"))
+                .roles("USER");
+    }
+}
