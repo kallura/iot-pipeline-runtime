@@ -3,6 +3,14 @@
 Loads the statistic data from HBase and aggregate average/median/max/min values for sensor array
 
 #### Rest endpoint specification
+Security:
+use Base aut in postman(or any similar tool) with user name user1 and password password1,
+and the tool will generate the Authorization header for you.
+Or you can use 
+````
+Authorization Basic dXNlcjE6cGFzc3dvcmQx
+````
+for testing
 Average:
 
 ````
